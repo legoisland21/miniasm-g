@@ -5,4 +5,5 @@
 #include "regtools.h"
 #include "miniio.h"
 #include "minimath.h"
+#include "minimisc.h"
 #endif

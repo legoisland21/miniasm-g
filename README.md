@@ -16,7 +16,7 @@ MiniASM is a tiny "assembly-style" system built in C++. You can set registers, d
 ## Documentation
 
 **Math functions (3 parameters: input1, input2, output):**  
-`addReg`, `subReg`, `mulReg`, `divReg`
+`addReg`, `subReg`, `mulReg`, `divReg`, `modReg`, `powReg`, `incReg`, `decReg`
 
 **Register functions:**  
 - `setRegInt` / `setRegString` - sets register to value (value, index)  
@@ -29,6 +29,10 @@ MiniASM is a tiny "assembly-style" system built in C++. You can set registers, d
 - `getInputInt` / `getInputStr` (index)  
 - `readRegInt` / `readRegStr` (index)  
 - `printRegisters` - prints all registers (IV = int value, SV = string value)
+
+**Miscellaneous**
+- `randInt` (index, min, max)
+- `wait` (ms)
 
 ## MiniCalc Example
 
