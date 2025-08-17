@@ -2,12 +2,6 @@
 
 MiniASM is a tiny "assembly-style" system built in C++. You can set registers, do math, and probably make games!
 
-## Features
-- Set/get registers
-- Basic math: add, sub, mul, div
-- Short and readable commands
-- MiniCalc example included
-
 ## How to use
 1. Compile using C++11 or newer
 2. Run your program
@@ -84,4 +78,5 @@ int main() {
     setRegStr("Result is: ", 0);
     printStr(0, false); 
     printInt(3, false); 
+
 }
