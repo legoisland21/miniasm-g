@@ -2,11 +2,20 @@
 #define MINIBEEP_H
 
 #include <thread>
+#include <vector>
+#include <mutex>
 #include <chrono>
 #include <cmath>
 #include <cstdio>
 
 using namespace std;
+
+namespace minibeeps {
+
+static vector<thread> g_threads;
+static mutex g_mutex;
+
+inline double two_pi() { return 6.28318530717958647692; }
 
 #ifdef _WIN32
 #include <windows.h>
@@ -16,17 +25,43 @@ inline void beep(double freq, int ms) {
 #else
 inline void beep(double freq, int ms) {
     const int sampleRate = 44100;
-    const int samples = sampleRate * ms / 1000;
-
+    const int samples = (sampleRate * ms) / 1000;
     FILE* pipe = popen("aplay -q -f S16_LE -r 44100 -t raw > /dev/null 2>&1", "w");
-    if(!pipe) return;
-
-    for(int i = 0; i < samples; i++) {
-        short sample = 32767 * sin(2 * M_PI * freq * i / sampleRate);
-        fwrite(&sample, sizeof(short), 1, pipe);
+    if (!pipe) return;
+    const double w = two_pi() * freq / sampleRate;
+    const short amp = 8000; // quieter output
+    for (int i = 0; i < samples; ++i) {
+        short s = (short)(amp * sin(w * i));
+        fwrite(&s, sizeof(short), 1, pipe);
     }
     pclose(pipe);
 }
 #endif
+
+inline void beepns(double freq, int ms) {
+    lock_guard<mutex> lk(g_mutex);
+    g_threads.emplace_back([freq, ms]() {
+        beep(freq, ms);
+    });
+}
+
+inline void beep_wait_all() {
+    lock_guard<mutex> lk(g_mutex);
+    for (auto& t : g_threads) {
+        if (t.joinable()) t.join();
+    }
+    g_threads.clear();
+}
+
+struct AutoJoin {
+    ~AutoJoin() { beep_wait_all(); }
+};
+static AutoJoin _autoJoin;
+
+}
+
+using minibeeps::beep;
+using minibeeps::beepns;
+using minibeeps::beep_wait_all;
 
 #endif

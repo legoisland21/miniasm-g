@@ -34,6 +34,15 @@ MiniASM is a tiny "assembly-style" system built in C++. You can set registers, d
 - `randInt` (index, min, max)
 - `wait` (ms)
 - `beep` (freq, duration)
+- `beepns` (freq, duration) (runs in another thread so no freeze)
+
+**Graphics**
+- `setPixel` (x, y, character, fg, bg)
+- `clear` (character, bg)
+- `render` - renders graphics
+- `calculateDelta` (fps)
+- `getWidth` / `getHeight` - gets width/height
+- `getInput` - use for games!
 
 ## MiniCalc Example
 

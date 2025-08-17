@@ -8,4 +8,7 @@
 #include "minimisc.h"
 #include "minibeep.h"
 #include "mininotes.h"
+#include "minigraphics.h"
+#include "minicolors.h"
+#include "miniinput.h"
 #endif
