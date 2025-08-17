@@ -36,7 +36,8 @@ MiniASM is a tiny "assembly-style" system built in C++. You can set registers, d
 - `render` - renders graphics
 - `calculateDelta` (fps)
 - `getWidth` / `getHeight` - gets width/height
-- `getInput` - use for games!
+- `getInput` - used mainly for games as it doesnt block anything.
+- `drawText` - (x, y, text, fg, bg)
 
 ## MiniCalc Example
 

@@ -56,6 +56,12 @@ public:
         if (fps <= 0) return 0;
         return static_cast<int>(1000.0 / fps);
     }
+
+    void drawText(int x, int y, const string& text, int fg = WHITE, int bg = BLACK) {
+        for (int i = 0; i < text.size(); ++i) {
+            setPixel(x + i, y, text[i], fg, bg);
+        }
+    }
 };
 
 #endif
