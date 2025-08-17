@@ -33,6 +33,7 @@ MiniASM is a tiny "assembly-style" system built in C++. You can set registers, d
 **Miscellaneous**
 - `randInt` (index, min, max)
 - `wait` (ms)
+- `beep` (freq, duration)
 
 ## MiniCalc Example
 

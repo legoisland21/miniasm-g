@@ -6,4 +6,6 @@
 #include "miniio.h"
 #include "minimath.h"
 #include "minimisc.h"
+#include "minibeep.h"
+#include "mininotes.h"
 #endif
