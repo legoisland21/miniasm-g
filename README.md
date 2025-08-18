@@ -1,6 +1,9 @@
 # MiniASM
 
-MiniASM is a tiny "assembly-style" system built in C++. You can set registers, do math, and probably make games!
+MiniASM is a tiny "assembly-style" system built in C++. You can set registers, do math, and make games!
+
+Notice: For audio on Windows including winmm.lib IS required
+Warning: Linux runs way faster then Windows, while making pong 5FPS on linux was about the same as 30FPS on windows
 
 ## How to use
 1. Compile using C++11 or newer
@@ -36,8 +39,10 @@ MiniASM is a tiny "assembly-style" system built in C++. You can set registers, d
 - `render` - renders graphics
 - `calculateDelta` (fps)
 - `getWidth` / `getHeight` - gets width/height
-- `getInput` - used mainly for games as it doesnt block anything.
+- `getInput` - used mainly for games.
+- `getInputns` - better over getInput as it skips when no input is provided.
 - `drawText` - (x, y, text, fg, bg)
+- `getPixelChar`/`getPixelColor`/`getPixelBgColor` - (x, y)
 
 ## MiniCalc Example
 
@@ -81,3 +86,88 @@ int main() {
     printInt(3, false); 
 
 }
+```
+
+## Graphics Engine example (1 person pong)
+
+```cpp
+#include "include/miniasm.h"
+#include <time.h>
+using namespace std;
+
+vector<Register> registers;
+bool upD, downD = true, leftD, rightD = true;
+
+void riff() {
+    beepns(C4, 100);
+    wait(100);
+    beepns(E4, 100);
+    wait(100);
+    beepns(G4, 100);
+    wait(100);
+    beepns(C4, 100);
+    wait(100);
+    beepns(E4, 100);
+    wait(100);
+    beepns(G4, 100);
+    wait(100);
+}
+
+int main() {
+    srand(time(NULL));
+    int y = rand() % 15;
+    int bX = 1, bY = y + 1;
+    const int fps = 30;
+
+    AsciiTable game(48, 16);
+    int delta = game.calculateDelta(fps);
+    while(true) {
+        game.clear(' ', BLACK);
+
+        if(bX == 0) {
+            beep(C4, 200); 
+            beep(B3, 200); 
+            beep(A3_SHARP, 200); 
+            return 0;
+        }
+        
+        bY += downD ? 1 : -1;
+        bX += rightD ? 1 : -1;
+
+        if(bY <= 0) {
+            bY = 0; 
+            downD = true; 
+            beepns(C5, 250);
+        }
+        if(bY >= game.getHeight() - 1) {
+            bY = game.getHeight() - 1; 
+            downD = false; 
+            beepns(C5, 250);
+        }
+
+        if(bX >= game.getWidth() - 1) {
+            bX = game.getWidth() - 1; 
+            rightD = false; 
+            beepns(C5, 250);
+        }
+
+        if(bX == 1 && bY >= y-1 && bY <= y+1) {
+            rightD = true;
+            thread t(riff);
+            t.detach();
+        }
+        
+        char input = getInputNs();
+        if(input != -1) {
+            if(input == 'w' && y > 1) y--;
+            if(input == 's' && y < game.getHeight() - 2) y++;
+        }
+        
+        for(int i=-1; i<=1; i++) game.setPixel(0, y+i, '#', WHITE, WHITE);
+        game.setPixel(bX, bY, 'O', BLUE, BLUE);
+        
+        game.render();
+        wait(delta);
+    }
+}
+```

@@ -1,14 +1,21 @@
-#ifndef MINIINPUT_H
-#define MINIINPUT_H
-#include <iostream>
-
 #ifdef _WIN32
 #include <conio.h>
+
+int getInput() {
+    return _getch();
+}
+
+int getInputNs() {
+    if (_kbhit()) return _getch();
+    return -1;
+}
+
 #else
 #include <termios.h>
 #include <unistd.h>
+#include <fcntl.h>
 
-int getch() {
+int getInput() {
     struct termios oldt, newt;
     int ch;
     tcgetattr(STDIN_FILENO, &oldt);
@@ -19,10 +26,24 @@ int getch() {
     tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
     return ch;
 }
-#endif
 
-int getInput() {
-    return getch();
+int getInputNs() {
+    struct termios oldt, newt;
+    int ch = -1;
+
+    tcgetattr(STDIN_FILENO, &oldt);
+    newt = oldt;
+    newt.c_lflag &= ~(ICANON | ECHO);
+    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+
+    int oldf = fcntl(STDIN_FILENO, F_GETFL, 0);
+    fcntl(STDIN_FILENO, F_SETFL, oldf | O_NONBLOCK);
+
+    ch = getchar();
+
+    tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+    fcntl(STDIN_FILENO, F_SETFL, oldf);
+
+    return ch;
 }
-
 #endif

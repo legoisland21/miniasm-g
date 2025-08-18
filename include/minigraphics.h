@@ -62,6 +62,24 @@ public:
             setPixel(x + i, y, text[i], fg, bg);
         }
     }
+
+    char getPixelChar(int x, int y) {
+        if (x >= 0 && x < width && y >= 0 && y < height)
+            return table[y][x].ch;
+        return ' ';
+    }
+
+    int getPixelColor(int x, int y) {
+        if (x >= 0 && x < width && y >= 0 && y < height)
+            return table[y][x].fg;
+        return WHITE;
+    }
+
+    int getPixelBgColor(int x, int y) {
+        if (x >= 0 && x < width && y >= 0 && y < height)
+            return table[y][x].bg;
+        return BLACK;
+    }
 };
 
 #endif
