@@ -55,36 +55,38 @@ using namespace std;
 vector<Register> registers;
 
 int main() {
-    initRegisters(4); // Initializes 4 registers
-    setRegStr("Welcome to MiniCalc!", 0);
-    printStr(0, true); // Sets and outputs register value
+    initRegisters(8); // 8 registers (easier to change messages)
+    setRegStr("Welcome to MiniCalc", 3);
+    setRegStr("Enter operation (+, -, *, /): ", 4);
+    setRegStr("Enter first number: ", 5);
+    setRegStr("Enter second number", 6);
+    setRegStr("Result is", 7);
 
-    setRegStr("Choose operation (1 = add, 2 = sub, 3 = mul, 4 = div): ", 0);
-    printStr(0, false); // Outputs register value
-    getInputInt(4); // Gets int from user and sets to register 4
-    if(readRegInt(4) < 1 || readRegInt(4) > 4) {
-        setRegStr("Invalid operation", 0);
-        printStr(0, false);
-        return 0;
+    // Welcome and operation
+    printStr(3, true);
+    printStr(4, true);
+    getInputStr(0);
+
+    // 1st and 2nd number
+    printStr(5, true);
+    getInputInt(0);
+    printStr(6, true);
+    getInputInt(1);
+
+    // Do operation
+    if(readRegStr(0) == "+") addReg(0, 1, 2);
+    else if(readRegStr(0) == "-") subReg(0, 1, 2);
+    else if(readRegStr(0) == "*") mulReg(0, 1, 2);
+    else if(readRegStr(0) == "/") divReg(0, 1, 2);
+    else {
+        setRegStr("ERROR: No valid operation", 0); // Operation not +, -, * or /
+        printStr(0, true);
+        return 1;
     }
 
-    setRegStr("Choose 1st number: ", 0);
-    printStr(0, false); 
-    getInputInt(1); 
-
-    setRegStr("Choose 2nd number: ", 0);
-    printStr(0, false); 
-    getInputInt(2); 
-
-    if(readRegInt(4) == 1) addReg(1, 2, 3); 
-    else if(readRegInt(4) == 2) subReg(1, 2, 3); 
-    else if(readRegInt(4) == 3) mulReg(1, 2, 3); 
-    else if(readRegInt(4) == 4) divReg(1, 2, 3);
-
-    setRegStr("Result is: ", 0);
-    printStr(0, false); 
-    printInt(3, false); 
-
+    // Print result
+    setRegStr("Result is " + to_string(readRegInt(2)), 7);
+    printStr(7, true);
 }
 ```
 
