@@ -177,3 +177,5 @@ int main() {
     }
 }
 ```
+
+(i know assembly looks way different but i made this for fun)
