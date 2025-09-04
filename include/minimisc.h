@@ -45,4 +45,8 @@ inline void wait(int ms) {
     }
 }
 
+inline void clearWindow() {
+    cout << "\033[2J\033[H";
+}
+
 #endif
