@@ -5,6 +5,7 @@ MiniASM is a tiny "assembly-style" system built in C++. You can set registers, d
 Notice: For audio on Windows including winmm.lib IS required
 Notice 2: To have audio on Linux you need to have `alsa-utils` so to install it (apt) `sudo apt install alsa-utils` or (pacman) `sudo pacman -S alsa-utils`
 Warning: Linux runs way faster then Windows, while making pong 5FPS on linux was about the same as 30FPS on windows
+Warning 2: To enable ANSI (used for graphics) for older terminals (Windows Console Host, etc...) on Windows you need to add `enableANSI()` to enable ANSI, if the program is linux-only there is no need to add it
 
 ## How to use
 1. Compile using C++11 or newer

@@ -48,6 +48,7 @@ public:
 };
 
 int main() {
+    enableANSI();
     AsciiTable screen(64, 24);
     int delta = screen.calculateDelta(60);
     srand(time(NULL));

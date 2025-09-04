@@ -17,6 +17,7 @@ void riff() {
 }
 
 int main() {
+    enableANSI();
     srand(time(NULL));
     int y = rand() % 15;
     int bX = 1, bY = y + 1;
