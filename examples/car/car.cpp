@@ -7,27 +7,30 @@ random_device rdn;
 mt19937 ramdom(rdn());
 
 vector <Register> registers;
-AsciiTable game(16, 8);
+AsciiTable game(32, 16);
+
+int rightSide = game.getWidth() - 1;
+int carY = game.getHeight() - 2;
 
 const int delta = game.calculateDelta(10);
 
 int randomInt(int min, int max) {
-    static uniform_int_distribution<int> dist; // reused
+    static uniform_int_distribution<int> dist;
     dist.param(uniform_int_distribution<int>::param_type{min, max});
     return dist(rng);
 }
 
-int cX = randomInt(1, 7), cY = -10, x = randomInt(1, 7);
+int cX = randomInt(1, rightSide), cY = -10, x = randomInt(1, 7);
 int score;
 
 void collision() {
-    x = max(1, min(x, 14));
+    x = max(1, min(x, rightSide - 1));
 }
 
 void renderMap() {
-    for(int i = 0; i != 8; i++) {
+    for(int i = 0; i != game.getHeight(); i++) {
         game.setPixel(0, i, '#', BLUE, BLUE);
-        game.setPixel(15, i, '#', BLUE, BLUE);
+        game.setPixel(rightSide, i, '#', BLUE, BLUE);
     }
 }
 
@@ -37,13 +40,13 @@ void doCar() {
     if(move == 1) cX++;
     else if(move == 2) cX--;
 
-    if(cY == 8) { 
+    if(cY == game.getHeight()) { 
         cY = -5;
         cX = randomInt(1, 7);
         score++;
     }
 
-    cX = max(1, min(cX, 14));
+    cX = max(1, min(cX, rightSide - 1));
 }
 
 void lose() {
@@ -75,11 +78,11 @@ int main() {
 
         doCar();
 
-        if(cX == x && cY == 6) lose();
+        if(cX == x && cY == carY) lose();
 
-        game.drawText(0, 7, to_string(score), BLACK, YELLOW);
+        game.drawText(0, rightSide, to_string(score), BLACK, YELLOW);
 
-        game.setPixel(x, 6, '#', WHITE, GREEN);
+        game.setPixel(x, carY, '#', WHITE, GREEN);
 
         game.setPixel(cX, cY, '#', MAGENTA, GREEN);
 
