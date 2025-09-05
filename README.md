@@ -36,6 +36,7 @@ Warning 2: To enable ANSI (used for graphics) for older terminals (Windows Conso
 - `beepns` (freq, duration) (runs in another thread so no freeze)
 - `enableANSI` - enables ANSI for Windows terminals (some need this)
 - `clearWindow` - clear entire terminal window (uses ANSI)
+- `getOS` - returns value based on OS (0 - Windows, 1 - Linux, 2 - Unknown/macOS (not supported))
 
 **Graphics**
 - `setPixel` (x, y, character, fg, bg)
