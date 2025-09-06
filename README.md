@@ -32,8 +32,6 @@ Warning 2: To enable ANSI (used for graphics) for older terminals (Windows Conso
 **Miscellaneous**
 - `randInt` (index, min, max)
 - `wait` (ms)
-- `beep` (freq, duration)
-- `beepns` (freq, duration) (runs in another thread so no freeze)
 - `enableANSI` - enables ANSI for Windows terminals (some need this)
 - `clearWindow` - clear entire terminal window (uses ANSI)
 - `getOS` - returns value based on OS (0 - Windows, 1 - Linux, 2 - Unknown/macOS (not supported))
@@ -44,10 +42,13 @@ Warning 2: To enable ANSI (used for graphics) for older terminals (Windows Conso
 - `render` - renders graphics
 - `calculateDelta` (fps)
 - `getWidth` / `getHeight` - gets width/height
-- `getInput` - used mainly for games.
-- `getInputns` - better over getInput as it skips when no input is provided.
+- `getInput` / `getInputNs`  - input for games (getInputNs recommended)
 - `drawText` - (x, y, text, fg, bg)
 - `getPixelChar`/`getPixelColor`/`getPixelBgColor` - (x, y)
+
+**Audio**
+- `playAudio` / `playAudioNs` - plays audio (.wav only)
+- `beep` / `beepns` (freq, duration) (beepns runs in another thread so no freeze)
 
 ## MiniCalc Example
 
