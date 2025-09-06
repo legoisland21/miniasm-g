@@ -33,20 +33,28 @@ inline void enableANSI() {}
 #endif
 
 inline void randInt(int index, int min, int max) {
-    uniform_int_distribution<mt19937::result_type> random_number(min, max);
-    registers[index].ivalue = random_number(rng);
+    static uniform_int_distribution<int> dist;
+    dist.param(uniform_int_distribution<int>::param_type{min, max});
+    registers[index].ivalue = dist(rng);
 }
 
 inline void wait(int ms) {
-    auto start = chrono::high_resolution_clock::now();
-    auto end = start + chrono::milliseconds(ms);
-    while (chrono::high_resolution_clock::now() < end) {
-
-    }
+    if (ms <= 0) return;
+    this_thread::sleep_for(chrono::milliseconds(ms));
 }
 
 inline void clearWindow() {
     cout << "\033[2J\033[H";
+}
+
+int getOS() {
+    #if defined(_WIN32) || defined(_WIN64)
+        return 0;
+    #elif defined(__linux__)
+        return 1;
+    #else
+        return -1;
+    #endif
 }
 
 #endif
