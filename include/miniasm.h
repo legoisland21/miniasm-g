@@ -11,4 +11,5 @@
 #include "minigraphics.h"
 #include "minicolors.h"
 #include "miniinput.h"
+#include "miniaudio.h"
 #endif
