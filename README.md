@@ -35,6 +35,7 @@ Warning 2: To enable ANSI (used for graphics) for older terminals (Windows Conso
 - `enableANSI` - enables ANSI for Windows terminals (some need this)
 - `clearWindow` - clear entire terminal window (uses ANSI)
 - `getOS` - returns value based on OS (0 - Windows, 1 - Linux, 2 - Unknown/macOS (not supported))
+- `fileExists` / `dirExists` - returns true or false based if the file/folder exists
 
 **Graphics**
 - `setPixel` (x, y, character, fg, bg)
