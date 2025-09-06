@@ -12,7 +12,7 @@ AsciiTable game(32, 16);
 int rightSide = game.getWidth() - 1;
 int carY = game.getHeight() - 2;
 
-const int delta = game.calculateDelta(10);
+const int delta = game.calculateDelta(30);
 
 int randomInt(int min, int max) {
     static uniform_int_distribution<int> dist;
@@ -53,11 +53,22 @@ void lose() {
     beep(C4, 200); 
     beep(B3, 200); 
     beep(A3_SHARP, 200); 
+
+    for(int i = 0; i != game.getHeight(); i++) {
+        for(int j = 0; j != game.getWidth(); j++) {
+            game.setPixel(j, i, '#', BLACK, BLACK);
+        }
+        if (i >= 0) game.drawText(0, 0, "You lost!");
+        if (i >= 1) game.drawText(0, 1, "Final score: " + to_string(score));
+        game.render();
+        wait(5);
+    }
+
     game.clear(' ', BLACK);
     game.drawText(0, 0, "You lost!");
-    game.drawText(0, 1, "Final score: ");
-    game.drawText(0, 2, to_string(score));
+    game.drawText(0, 1, "Final score: " + to_string(score));
     game.render();
+    wait(5000);
     exit(0);
 }
 
@@ -80,7 +91,7 @@ int main() {
 
         if(cX == x && cY == carY) lose();
 
-        game.drawText(0, rightSide, to_string(score), BLACK, YELLOW);
+        game.drawText(0, game.getHeight() - 1, to_string(score), BLACK, YELLOW);
 
         game.setPixel(x, carY, '#', WHITE, GREEN);
 
