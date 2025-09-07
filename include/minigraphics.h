@@ -38,6 +38,7 @@ public:
     }
 
     void render() {
+        cout << "\033[?25l";
         cout << "\033[H";
         for (int y = 0; y < height; ++y) {
             for (int x = 0; x < width; ++x) {
@@ -79,6 +80,10 @@ public:
         if (x >= 0 && x < width && y >= 0 && y < height)
             return table[y][x].bg;
         return BLACK;
+    }
+    
+    void showCursor() {
+        cout << "\033[?25h";
     }
 };
 
