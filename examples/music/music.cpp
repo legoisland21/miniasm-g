@@ -6,7 +6,6 @@ using namespace std;
 vector<Register> registers;
 
 int main() {
-    if(dirExists("tools")) cout << "67" << endl;
     if(!fileExists("audio.wav")) {
         cout << "audio.wav not found!" << endl;
         return 1;
@@ -19,4 +18,5 @@ int main() {
     cout << "Waiting 10 seconds for audio to finish" << endl;
     wait(10000);
     return 0;
+
 }
