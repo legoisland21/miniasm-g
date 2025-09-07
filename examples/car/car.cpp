@@ -13,6 +13,7 @@ int rightSide = game.getWidth() - 1;
 int carY = game.getHeight() - 2;
 
 const int delta = game.calculateDelta(30);
+bool closed = false;
 
 int randomInt(int min, int max) {
     static uniform_int_distribution<int> dist;
@@ -69,13 +70,14 @@ void lose() {
     game.drawText(0, 1, "Final score: " + to_string(score));
     game.render();
     wait(5000);
-    exit(0);
+    closed = true;
 }
 
 int main() {
     enableANSI();
     clearWindow();
     while(true) {
+        if(closed) return 0;
         game.clear(' ', GREEN);
         renderMap();
 
