@@ -6,6 +6,8 @@
 #include <random>
 #include <chrono>
 #include <thread>
+#include <algorithm>
+#include <sys/stat.h>
 #include "register.h"
 
 using namespace std;
@@ -55,6 +57,24 @@ int getOS() {
     #else
         return -1;
     #endif
+}
+
+inline bool fileExists(const string &path) {
+    struct stat buffer;
+    return (stat(path.c_str(), &buffer) == 0 && (buffer.st_mode & S_IFREG));
+}
+
+inline bool dirExists(const string &path) {
+    struct stat buffer;
+    return (stat(path.c_str(), &buffer) == 0 && (buffer.st_mode & S_IFDIR));
+}
+
+string stripQuotes(const string& input) {
+    string result = input;
+    
+    result.erase(remove(result.begin(), result.end(), '\''), result.end());
+    result.erase(remove(result.begin(), result.end(), '"'), result.end());
+    return result;
 }
 
 #endif
