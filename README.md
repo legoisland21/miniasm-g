@@ -28,6 +28,7 @@ Warning 2: To enable ANSI (used for graphics) for older terminals (Windows Conso
 - `getInputInt` / `getInputStr` (index)  
 - `readRegInt` / `readRegStr` (index)  
 - `printRegisters` - prints all registers (IV = int value, SV = string value)
+- `newLine` - makes a newline
 
 **Miscellaneous**
 - `randInt` (index, min, max)
@@ -36,6 +37,7 @@ Warning 2: To enable ANSI (used for graphics) for older terminals (Windows Conso
 - `clearWindow` - clear entire terminal window (uses ANSI)
 - `getOS` - returns value based on OS (0 - Windows, 1 - Linux, 2 - Unknown/macOS (not supported))
 - `fileExists` / `dirExists` - returns true or false based if the file/folder exists
+- `stripQuotes` - strips quotes (use for anything path-related!)
 
 **Graphics**
 - `setPixel` (x, y, character, fg, bg)
