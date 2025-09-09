@@ -22,7 +22,7 @@ int main() {
     int y = rand() % 15;
     int bX = 1, bY = y + 1;
     int score = 0;
-    const int fps = 60;
+    const int fps = 15;
     int begin = rand() % 2;
     if(begin == 0) downD = true;
     else if(begin == 1) upD = true;

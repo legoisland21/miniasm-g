@@ -12,7 +12,7 @@ AsciiTable game(32, 16);
 int rightSide = game.getWidth() - 1;
 int carY = game.getHeight() - 2;
 
-const int delta = game.calculateDelta(30);
+const int delta = game.calculateDelta(10);
 bool closed = false;
 
 int randomInt(int min, int max) {

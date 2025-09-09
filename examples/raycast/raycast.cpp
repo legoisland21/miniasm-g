@@ -50,12 +50,12 @@ char getShade(double distance) {
     if(distance <= 1.0) return '#';
     else if(distance <= 2.0) return 'X';
     else if(distance <= 3.0) return '+';
-    else if(distance <= 4.0) return '.';
-    else return ' ';
+    else if(distance <= 4.0) return '*';
+    else return '.';
 }
 
 int main() {
-    int FPS = game.calculateDelta(60);
+    int FPS = game.calculateDelta(15);
     enableANSI();
     clearWindow();
 
