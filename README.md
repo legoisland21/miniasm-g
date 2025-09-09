@@ -2,9 +2,9 @@
 
 MiniASM-G is a tiny "assembly-style" system built in C++. You can set registers, do math, and make games!
 
-Notice: For audio on Windows including winmm.lib IS required
+Notice: For audio on Windows linking winmm.lib IS required
 Notice 2: To have audio on Linux you need to have `alsa-utils` so to install it (apt) `sudo apt install alsa-utils` or (pacman) `sudo pacman -S alsa-utils`
-Warning: Linux runs way faster then Windows, while making pong 5FPS on linux was about the same as 30FPS on windows
+Warning: If you use a slower compiler on Windows (MINGW64/TDM-GCC) it will run slower then the set FPS (use a compiler like LLVM or MSVC)
 Warning 2: To enable ANSI (used for graphics) for older terminals (Windows Console Host, etc...) on Windows you need to add `enableANSI()` to enable ANSI, if the program is linux-only there is no need to add it
 
 ## How to use
