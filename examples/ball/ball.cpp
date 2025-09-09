@@ -39,7 +39,8 @@ public:
         if (x == screen.getWidth() - 1) { leftD = true; rightD = false; wall = true; }
 
         if (wall) {
-            color = rand() % 7;
+            color = rand() % 6;
+            color++;
             beepns(A4, 250);
         }
 
@@ -50,12 +51,11 @@ public:
 int main() {
     enableANSI();
     AsciiTable screen(64, 24);
-    int delta = screen.calculateDelta(60);
+    int delta = screen.calculateDelta(15);
     srand(time(NULL));
     vector<Ball> balls;
     for (int i = 0; i != 1; i++) balls.emplace_back(screen.getWidth(), screen.getHeight());
     while(true) {
-        //screen.clear();
         for (auto &ball : balls) {
             ball.update(screen);
         }
