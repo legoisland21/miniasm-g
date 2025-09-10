@@ -47,6 +47,7 @@ public:
             }
             cout << "\033[0m\n";
         }
+        cout << "\033[?25h";
         cout.flush();
     }
 
@@ -84,6 +85,10 @@ public:
     
     void showCursor() {
         cout << "\033[?25h";
+    }
+
+    void hideCursor() {
+        cout << "\033[?25l";
     }
 };
 
