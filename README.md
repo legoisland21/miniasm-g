@@ -47,7 +47,8 @@ Warning 2: To enable ANSI (used for graphics) for older terminals (Windows Conso
 - `getWidth` / `getHeight` - gets width/height
 - `getInput` / `getInputNs`  - input for games (getInputNs recommended)
 - `drawText` - (x, y, text, fg, bg)
-- `getPixelChar`/`getPixelColor`/`getPixelBgColor` - (x, y)
+- `getPixelChar`/ `getPixelColor`/ `getPixelBgColor` - (x, y)
+- `showCursor` / `hideCursor` - hides/shows cursor using ANSI
 
 **Audio**
 - `playAudio` / `playAudioNs` - plays audio (.wav only)
