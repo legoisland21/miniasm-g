@@ -5,15 +5,15 @@
 vector<Register> registers;
 AsciiTable game(96, 32);
 
-vector<vector<int>> pixels(96, vector<int>(31, 0));
+vector<vector<int>> pixels(game.getWidth(), vector<int>(game.getHeight() - 1, 0));
 
 int x, y;
 
 int currentColor = BLACK, backgroundColor = BLACK;
 
 void drawCanvas() {
-    for (int x = 0; x < 96; x++) {
-        for (int y = 0; y < 31; y++) {
+    for (int x = 0; x < game.getWidth(); x++) {
+        for (int y = 0; y < game.getHeight() - 1; y++) {
             if (pixels[x][y] == 0) {
                 game.setPixel(x, y, ' ', backgroundColor, backgroundColor);
             } else {
@@ -24,8 +24,8 @@ void drawCanvas() {
 }
 
 void clearCanvas() {
-    for (int x = 0; x < 96; x++) {
-        for (int y = 0; y < 31; y++) {
+    for (int x = 0; x < game.getWidth(); x++) {
+        for (int y = 0; y < game.getHeight() - 1; y++) {
             pixels[x][y] = 0;
             game.setPixel(x, y, ' ', backgroundColor, backgroundColor);
         }
