@@ -37,38 +37,40 @@ void drawUI() {
         game.setPixel(i, game.getHeight() - 1, '#', BLACK, BLACK);
     }
 
-    game.setPixel(0, game.getHeight() - 1, '#', BLACK, BLACK);
-    game.setPixel(1, game.getHeight() - 1, '#', RED, RED);
-    game.setPixel(2, game.getHeight() - 1, '#', GREEN, GREEN);
-    game.setPixel(3, game.getHeight() - 1, '#', YELLOW, YELLOW);
-    game.setPixel(4, game.getHeight() - 1, '#', BLUE, BLUE);
-    game.setPixel(5, game.getHeight() - 1, '#', MAGENTA, MAGENTA);
-    game.setPixel(6, game.getHeight() - 1, '#', CYAN, CYAN);
-    game.setPixel(7, game.getHeight() - 1, '#', WHITE, WHITE);
+    game.drawText(0, game.getHeight() - 1, "FG: ", WHITE, BLACK);
 
-    game.drawText(9, game.getHeight() - 1, "Background: ", WHITE, BLACK);
+    game.setPixel(4, game.getHeight() - 1, '#', BLACK, BLACK);
+    game.setPixel(5, game.getHeight() - 1, '#', RED, RED);
+    game.setPixel(6, game.getHeight() - 1, '#', GREEN, GREEN);
+    game.setPixel(7, game.getHeight() - 1, '#', YELLOW, YELLOW);
+    game.setPixel(8, game.getHeight() - 1, '#', BLUE, BLUE);
+    game.setPixel(9, game.getHeight() - 1, '#', MAGENTA, MAGENTA);
+    game.setPixel(10, game.getHeight() - 1, '#', CYAN, CYAN);
+    game.setPixel(11, game.getHeight() - 1, '#', WHITE, WHITE);
 
-    game.setPixel(22, game.getHeight() - 1, '#', BLACK, BLACK);
-    game.setPixel(23, game.getHeight() - 1, '#', RED, RED);
-    game.setPixel(24, game.getHeight() - 1, '#', GREEN, GREEN);
-    game.setPixel(25, game.getHeight() - 1, '#', YELLOW, YELLOW);
-    game.setPixel(26, game.getHeight() - 1, '#', BLUE, BLUE);
-    game.setPixel(27, game.getHeight() - 1, '#', MAGENTA, MAGENTA);
-    game.setPixel(28, game.getHeight() - 1, '#', CYAN, CYAN);
-    game.setPixel(29, game.getHeight() - 1, '#', WHITE, WHITE);
+    game.drawText(13, game.getHeight() - 1, "BG: ", WHITE, BLACK);
 
-    game.drawText(31, game.getHeight() - 1, "Current color: ", WHITE, BLACK);
-    game.setPixel(47, game.getHeight() - 1, '#', currentColor, currentColor); 
+    game.setPixel(17, game.getHeight() - 1, '#', BLACK, BLACK);
+    game.setPixel(18, game.getHeight() - 1, '#', RED, RED);
+    game.setPixel(19, game.getHeight() - 1, '#', GREEN, GREEN);
+    game.setPixel(20, game.getHeight() - 1, '#', YELLOW, YELLOW);
+    game.setPixel(21, game.getHeight() - 1, '#', BLUE, BLUE);
+    game.setPixel(22, game.getHeight() - 1, '#', MAGENTA, MAGENTA);
+    game.setPixel(23, game.getHeight() - 1, '#', CYAN, CYAN);
+    game.setPixel(24, game.getHeight() - 1, '#', WHITE, WHITE);
 
-    game.drawText(49, game.getHeight() - 1, "Clear canvas: ", WHITE, BLACK);
-    game.setPixel(62, game.getHeight() - 1, 'O', WHITE, BLACK);
+    game.drawText(26, game.getHeight() - 1, "Color: ", WHITE, BLACK);
+    game.setPixel(33, game.getHeight() - 1, '#', currentColor, currentColor); 
+
+    game.drawText(35, game.getHeight() - 1, "Clear canvas: ", WHITE, BLACK);
+    game.setPixel(49, game.getHeight() - 1, 'O', WHITE, BLACK);
 }
 
 void inputLogic() {
     if(y == game.getHeight() - 1) {
-        if(x > -1 && x < 8) currentColor = game.getPixelColor(x, game.getHeight() - 1);
-        if(x > 21 && x < 30) backgroundColor = game.getPixelBgColor(x, game.getHeight() - 1);
-        if(x == 62) clearCanvas();
+        if(x > 3 && x < 12) currentColor = game.getPixelColor(x, game.getHeight() - 1);
+        if(x > 16 && x < 25) backgroundColor = game.getPixelBgColor(x, game.getHeight() - 1);
+        if(x == 49) clearCanvas();
     } else {
         game.setPixel(x, y, '#', currentColor, currentColor);
         pixels[x][y] = currentColor;
@@ -88,7 +90,7 @@ int main() {
         else if(input == 's') { if(y < game.getHeight() - 1) y++; }
         else if(input == 'd') { if(x < game.getWidth() - 1) x++; }
         else if(input == 'a') { if(x > 0) x--; }
-        else if(input == 32) inputLogic();
+        if(input == 32) inputLogic();
 
         drawCanvas();
 
