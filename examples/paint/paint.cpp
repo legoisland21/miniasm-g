@@ -5,7 +5,7 @@
 vector<Register> registers;
 AsciiTable game(96, 32);
 
-vector<vector<int>> pixels(game.getWidth(), vector<int>(game.getHeight() - 1, 0));
+vector<vector<int>> pixels(game.getWidth(), vector<int>(game.getHeight() - 1, -1)); 
 
 int x, y;
 
@@ -14,10 +14,10 @@ int currentColor = BLACK, backgroundColor = BLACK;
 void drawCanvas() {
     for (int x = 0; x < game.getWidth(); x++) {
         for (int y = 0; y < game.getHeight() - 1; y++) {
-            if (pixels[x][y] == 0) {
+            if (pixels[x][y] == -1) {
                 game.setPixel(x, y, ' ', backgroundColor, backgroundColor);
             } else {
-                game.setPixel(x, y, '#', pixels[x][y], pixels[x][y]);
+                game.setPixel(x, y, ' ', pixels[x][y], pixels[x][y]);
             }
         }
     }
@@ -26,7 +26,7 @@ void drawCanvas() {
 void clearCanvas() {
     for (int x = 0; x < game.getWidth(); x++) {
         for (int y = 0; y < game.getHeight() - 1; y++) {
-            pixels[x][y] = 0;
+            pixels[x][y] = -1;
             game.setPixel(x, y, ' ', backgroundColor, backgroundColor);
         }
     }
@@ -68,11 +68,26 @@ void drawUI() {
 
 void inputLogic() {
     if(y == game.getHeight() - 1) {
-        if(x > 3 && x < 12) currentColor = game.getPixelColor(x, game.getHeight() - 1);
-        if(x > 16 && x < 25) backgroundColor = game.getPixelBgColor(x, game.getHeight() - 1);
+        if(x == 5) currentColor = RED;
+        else if(x == 6) currentColor = GREEN;
+        else if(x == 7) currentColor = YELLOW;
+        else if(x == 8) currentColor = BLUE;
+        else if(x == 9) currentColor = MAGENTA;
+        else if(x == 10) currentColor = CYAN;
+        else if(x == 11) currentColor = WHITE;
+        else if(x == 4) currentColor = BLACK;
+
+        if(x == 18) backgroundColor = RED;
+        else if(x == 19) backgroundColor = GREEN;
+        else if(x == 20) backgroundColor = YELLOW;
+        else if(x == 21) backgroundColor = BLUE;
+        else if(x == 22) backgroundColor = MAGENTA;
+        else if(x == 23) backgroundColor = CYAN;
+        else if(x == 24) backgroundColor = WHITE;
+        else if(x == 17) backgroundColor = BLACK;
+
         if(x == 49) clearCanvas();
     } else {
-        game.setPixel(x, y, '#', currentColor, currentColor);
         pixels[x][y] = currentColor;
     }
 }
@@ -97,5 +112,6 @@ int main() {
         game.setPixel(x, y, '^', WHITE, game.getPixelBgColor(x, y));
 
         game.render();
+        cout << currentColor << " " << backgroundColor << endl;
     }
 }
