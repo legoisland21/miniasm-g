@@ -2,8 +2,9 @@
 
 MiniASM-G is a tiny "assembly-style" system built in C++. You can set registers, do math, and make games!
 
-Notice: For audio on Windows linking winmm.lib IS required
-Notice 2: To have audio on Linux you need to have `alsa-utils` so to install it (apt) `sudo apt install alsa-utils` or (pacman) `sudo pacman -S alsa-utils`
+Notices:
+When compiling for Linux and using audio you need to download `libasound2-dev`/`alsa-lib` (arch) and link `-lasound`
+When compiling for Windows and using audio you need to link `-lwinmm`
 Warning: If you use a slower compiler on Windows (MINGW64/TDM-GCC) it will run slower then the set FPS (use a compiler like LLVM or MSVC)
 Warning 2: To enable ANSI (used for graphics) for older terminals (Windows Console Host, etc...) on Windows you need to add `enableANSI()` to enable ANSI, if the program is linux-only there is no need to add it
 
@@ -51,7 +52,9 @@ Warning 2: To enable ANSI (used for graphics) for older terminals (Windows Conso
 - `showCursor` / `hideCursor` - hides/shows cursor using ANSI
 
 **Audio**
-- `playAudio` / `playAudioNs` - plays audio (.wav only)
+- `playAudio` / `playAudioNs` (path) - plays audio (.wav only)
+- `isPlaying` (path) - checks if audio file is playing
+- `stopPlaying` (path) / `stopAll` - stops file/stops all audio
 - `beep` / `beepns` (freq, duration) (beepns runs in another thread so no freeze)
 
 ## MiniCalc Example
