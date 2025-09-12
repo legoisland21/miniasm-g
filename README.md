@@ -3,9 +3,9 @@
 MiniASM-G is a tiny "assembly-style" system built in C++. You can set registers, do math, and make games!
 
 Notices:
-When compiling for Linux and using audio you need to download `libasound2-dev`/`alsa-lib` (arch) and link `-lasound`
-When compiling for Windows and using audio you need to link `-lwinmm`
-Warning: If you use a slower compiler on Windows (MINGW64/TDM-GCC) it will run slower then the set FPS (use a compiler like LLVM or MSVC)
+When compiling for Linux and using audio you need to download `libsdl2-dev` and `libsdl2-mixer-dev` (apt based) /`sdl2` and `sdl2_mixer` (pacman based) and add `-lSDL2 -lSDL2_mixer -pthread` (SDL2 cause native is too hard)
+When compiling for Windows and using audio you need to link `-lwinmm` (MCI)
+Warning: If you use a slower compiler on Windows (MINGW64/TDM-GCC) it will run slower then the set FPS (use a compiler like LLVM/Clang or MSVC)
 Warning 2: To enable ANSI (used for graphics) for older terminals (Windows Console Host, etc...) on Windows you need to add `enableANSI()` to enable ANSI, if the program is linux-only there is no need to add it
 
 ## How to use
