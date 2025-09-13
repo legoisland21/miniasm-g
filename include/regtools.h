@@ -23,6 +23,13 @@ void initRegisters(int regs = 16) {
     }
 }
 
+void clearRegisters() {
+    for(Register reg : registers) {
+        reg.ivalue = 0;
+        reg.svalue = "";
+    }
+}
+
 int getRegisters() { return regs_global; }
 
 #endif
