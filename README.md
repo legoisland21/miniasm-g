@@ -3,10 +3,14 @@
 MiniASM-G is a tiny "assembly-style" system built in C++. You can set registers, do math, and make games!
 
 Notices:
-When compiling for Linux and using audio you need to download `libsdl2-dev` and `libsdl2-mixer-dev` (apt based) /`sdl2` and `sdl2_mixer` (pacman based) and add `-lSDL2 -lSDL2_mixer -pthread` (SDL2 cause native is too hard)
+When compiling for Linux and using audio you need to download `libsdl2-dev` and `libsdl2-mixer-dev` (apt based) / `sdl2` and `sdl2_mixer` (pacman based) and add `-lSDL2 -lSDL2_mixer -pthread` (SDL2 cause native is too hard)
 When compiling for Windows and using audio you need to link `-lwinmm` (MCI)
+
+When compiling for Windows and using getInput you need to link `-luser32`
+
 Warning: If you use a slower compiler on Windows (MINGW64/TDM-GCC) it will run slower then the set FPS (use a compiler like LLVM/Clang or MSVC)
 Warning 2: To enable ANSI (used for graphics) for older terminals (Windows Console Host, etc...) on Windows you need to add `enableANSI()` to enable ANSI, if the program is linux-only there is no need to add it
+Warning 3: Cause Linux is a piece of shit Linux users will be limited to 1 key at a time when using `getInput` / `getInputNs` while Windows gets multi-key support (ncurses breaks everything and SDL2 is shit)
 
 ## How to use
 1. Compile using C++11 or newer
@@ -56,6 +60,11 @@ Warning 2: To enable ANSI (used for graphics) for older terminals (Windows Conso
 - `isPlaying` (path) - checks if audio file is playing
 - `stopPlaying` (path) / `stopAll` - stops file/stops all audio
 - `beep` / `beepns` (freq, duration) (beepns runs in another thread so no freeze)
+
+## Python scripts
+`gsc_tool.py` - converts Images to .GSC (graphics script)
+`minitocode.py` - converts MIDI to `beep`/`beepns` and `wait`
+`pixelart.py` - pixelart program made for MiniASM-G
 
 ## MiniCalc Example
 
