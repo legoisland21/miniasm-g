@@ -8,6 +8,22 @@
 
 using namespace std;
 
+inline int getMinWidth(const string &path) {
+    ifstream file(path);
+    if (!file.is_open()) return -1;
+    int w = 0, h = 0;
+    file >> w >> h;
+    return w;
+}
+
+inline int getMinHeight(const string &path) {
+    ifstream file(path);
+    if (!file.is_open()) return -1;
+    int w = 0, h = 0;
+    file >> w >> h;
+    return h;
+}
+
 inline void loadGScript(AsciiTable &screen, const string &path) {
     ifstream file(path);
     if (!file.is_open()) {
