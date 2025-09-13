@@ -27,6 +27,7 @@ Warning 3: Cause Linux is a piece of shit Linux users will be limited to 1 key a
 - `copyRegInt` / `copyRegString` - copies register value to another (input, output)  
 - `initRegisters` - initializes registers (1 parameter: number of registers)  
 - `getRegisters` - returns the amount of registers  
+- `clearRegisters` - clears registers (resets to 0 and "")
 
 **Input/output functions:**  
 - `printInt` / `printStr` (index, newline)  
@@ -54,6 +55,8 @@ Warning 3: Cause Linux is a piece of shit Linux users will be limited to 1 key a
 - `drawText` - (x, y, text, fg, bg)
 - `getPixelChar`/ `getPixelColor`/ `getPixelBgColor` - (x, y)
 - `showCursor` / `hideCursor` - hides/shows cursor using ANSI
+- `loadGScript` (path) - load GScript (GSC)
+- `getMinWidth` / `getMinHeight` (path) - gets minimal width and height of GSC
 
 **Audio**
 - `playAudio` / `playAudioNs` (path) - plays audio (.wav only)
