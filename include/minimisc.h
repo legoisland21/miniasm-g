@@ -14,7 +14,6 @@ using namespace std;
 
 random_device dev;
 mt19937 rng(dev());
-
 extern vector<Register> registers;
 
 #ifdef _WIN32
@@ -67,6 +66,10 @@ inline bool fileExists(const string &path) {
 inline bool dirExists(const string &path) {
     struct stat buffer;
     return (stat(path.c_str(), &buffer) == 0 && (buffer.st_mode & S_IFDIR));
+}
+
+inline void setTitle(const string &title) {
+    cout << "\033]0;" << title << "\007";
 }
 
 string stripQuotes(const string& input) {
