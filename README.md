@@ -42,6 +42,7 @@ Warning 3: Cause Linux is a piece of shit Linux users will be limited to 1 key a
 - `getOS` - returns value based on OS (0 - Windows, 1 - Linux, 2 - Unknown/macOS (not supported))
 - `fileExists` / `dirExists` - returns true or false based if the file/folder exists
 - `stripQuotes` - strips quotes (use for anything path-related!)
+- `setTitle` (title) - sets window title using ANSI
 
 **Graphics**
 - `setPixel` (x, y, character, fg, bg)
