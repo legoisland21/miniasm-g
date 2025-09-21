@@ -10,9 +10,9 @@ vector <Register> registers;
 AsciiTable game(32, 16);
 
 int rightSide = game.getWidth() - 1;
-int carY = game.getHeight() - 2;
+int carY = game.getHeight() - 3;
 
-const int delta = game.calculateDelta(10);
+const int delta = game.calculateDelta(15);
 bool closed = false;
 
 int randomInt(int min, int max) {
@@ -29,7 +29,7 @@ void collision() {
 }
 
 void renderMap() {
-    for(int i = 0; i != game.getHeight(); i++) {
+    for(int i = 0; i != game.getHeight() - 1; i++) {
         game.setPixel(0, i, '#', BLUE, BLUE);
         game.setPixel(rightSide, i, '#', BLUE, BLUE);
     }
@@ -38,12 +38,14 @@ void renderMap() {
 void doCar() {
     cY++;
     int move = randomInt(0, 5);
-    if(move == 1) cX++;
-    else if(move == 2) cX--;
+    if(move > 3) {
+        if(cX > x) cX--;
+        else if(cX < x) cX++;
+    }
 
-    if(cY == game.getHeight()) { 
+    if(cY == game.getHeight() - 1) { 
         cY = -5;
-        cX = randomInt(1, 7);
+        cX = randomInt(1, rightSide);
         score++;
     }
 
@@ -93,7 +95,9 @@ int main() {
 
         if(cX == x && cY == carY) lose();
 
-        game.drawText(0, game.getHeight() - 1, to_string(score), BLACK, YELLOW);
+        for(int i = 0; i != game.getWidth(); i++) game.setPixel(i, game.getHeight() - 1, '#', BLACK, BLACK);
+
+        game.drawText(0, game.getHeight() - 1, "Score: " + to_string(score), WHITE, BLACK);
 
         game.setPixel(x, carY, '#', WHITE, GREEN);
 
