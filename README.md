@@ -8,8 +8,6 @@ When compiling for Windows and using beep you need to link `-lwinmm` (waveOut) (
 
 Warning: If you use a slower compiler on Windows (MINGW64/TDM-GCC) it will run slower then the set FPS (use a compiler like LLVM/Clang or MSVC)
 Warning 2: To enable ANSI (used for graphics) for older terminals (Windows Console Host, etc...) on Windows you need to add `enableANSI()` to enable ANSI, if the program is linux-only there is no need to add it
-Warning 3: Cause Linux is a piece of shit Linux users will be limited to 1 key at a time when using `getInput` / `getInputNs` while Windows gets multi-key support (ncurses breaks everything and SDL2 is shit)
-
 ## How to use
 1. Compile using C++11 or newer
 2. Run your program
