@@ -45,7 +45,7 @@ void doCar() {
 
     if(cY == game.getHeight() - 1) { 
         cY = -5;
-        cX = randomInt(1, rightSide);
+        cX = randomInt(1, rightSide - 1);
         score++;
     }
 
